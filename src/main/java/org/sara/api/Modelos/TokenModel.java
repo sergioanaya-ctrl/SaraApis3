@@ -1,4 +1,4 @@
-package Modelos;
+package org.sara.api.Modelos;
 
 public class TokenModel {
     private String token;

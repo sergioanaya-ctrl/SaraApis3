@@ -1,8 +1,8 @@
-package StepDefinitions;
+package org.sara.api.StepDefinitions;
 
-import Modelos.TokenModel;
-import Tareas.ProcesarExpedientesMasivamente;
-import interaccion.login;
+import org.sara.api.Modelos.TokenModel;
+import org.sara.api.Tareas.ProcesarExpedientesMasivamente;
+import org.sara.api.interaccion.login;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -16,7 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-import static conf.ConfiguracionGeneral.restApiSara;
+import static org.sara.api.conf.ConfiguracionGeneral.restApiSara;
 
 public class LoginStepD {
 

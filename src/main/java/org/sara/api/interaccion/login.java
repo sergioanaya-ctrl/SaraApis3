@@ -1,7 +1,7 @@
-package interaccion;
+package org.sara.api.interaccion;
 
-import Util.Post;
-import builders.CreateSessionBuilder;
+import org.sara.api.Util.Post;
+import org.sara.api.builders.CreateSessionBuilder;
 import io.restassured.http.ContentType;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.rest.SerenityRest;

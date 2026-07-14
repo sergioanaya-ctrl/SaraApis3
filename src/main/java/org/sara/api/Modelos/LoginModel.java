@@ -1,4 +1,4 @@
-package Modelos;
+package org.sara.api.Modelos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

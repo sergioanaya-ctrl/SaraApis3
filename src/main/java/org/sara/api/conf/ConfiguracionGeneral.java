@@ -1,4 +1,4 @@
-package conf;
+package org.sara.api.conf;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;

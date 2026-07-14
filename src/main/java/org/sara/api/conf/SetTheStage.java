@@ -1,4 +1,4 @@
-package conf;
+package org.sara.api.conf;
 
 import io.cucumber.java.Before;
 import net.serenitybdd.screenplay.actors.OnStage;

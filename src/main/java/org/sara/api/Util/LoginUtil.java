@@ -1,4 +1,4 @@
-package Util;
+package org.sara.api.Util;
 
 import java.util.ResourceBundle;
 

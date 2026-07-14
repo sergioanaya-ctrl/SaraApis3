@@ -1,4 +1,4 @@
-package Util;
+package org.sara.api.Util;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.rest.interactions.RestInteraction;

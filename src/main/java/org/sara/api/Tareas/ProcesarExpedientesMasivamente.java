@@ -1,7 +1,7 @@
-package Tareas;
+package org.sara.api.Tareas;
 
-import Modelos.TokenModel;
-import interaccion.ConsultarApiExpediente;
+import org.sara.api.Modelos.TokenModel;
+import org.sara.api.interaccion.ConsultarApiExpediente;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import java.util.List;

@@ -1,7 +1,7 @@
-package interaccion;
+package org.sara.api.interaccion;
 
-import Modelos.TokenModel;
-import Util.Post;
+import org.sara.api.Modelos.TokenModel;
+import org.sara.api.Util.Post;
 import io.restassured.http.ContentType;
 import lombok.AllArgsConstructor;
 import net.serenitybdd.screenplay.Actor;
