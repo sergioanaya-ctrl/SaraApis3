@@ -1,0 +1,84 @@
+version '1.0-SNAPSHOT'
+repositories {
+    mavenLocal()
+
+    mavenCentral()
+    maven {
+        url 'https://repo.clojars.org'
+        name 'Clojars'
+    }
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.2.8")
+        classpath("net.serenity-bdd:serenity-single-page-report:2.2.8")
+        classpath("net.serenity-bdd:serenity-json-summary-report:2.2.8")
+    }
+
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'net.serenity-bdd.aggregator'
+apply plugin: 'application'
+defaultTasks 'clean'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+mainClassName = ':test --tests "co.konecta.sura.api.runner.PrincipalRunner"'
+
+sourceCompatibility = 1.8
+
+dependencies {
+    // Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    // Serenity
+    implementation 'net.serenity-bdd:serenity-reports:3.4.1'
+    implementation 'net.serenity-bdd:serenity-screenplay:3.4.1'
+    implementation 'net.serenity-bdd:serenity-screenplay-rest:3.4.1'
+    implementation 'net.serenity-bdd:serenity-ensure:3.4.1'
+
+    // Testing Frameworks
+    testImplementation 'net.serenity-bdd:serenity-core:3.4.1'
+    testImplementation 'net.serenity-bdd:serenity-junit:3.4.1'
+    testImplementation 'net.serenity-bdd:serenity-cucumber:3.4.1'
+    testImplementation 'io.rest-assured:rest-assured:5.2.0'
+    testImplementation 'org.assertj:assertj-core:3.23.1'
+    testImplementation 'org.slf4j:slf4j-simple:2.0.3'
+    testImplementation 'org.hamcrest:java-hamcrest:2.0.0.0'
+    testImplementation 'junit:junit:4.13.1'
+
+    // Java Faker
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+
+    // Jackson
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.14.0'
+
+}
+
+test {
+    testLogging.showStandardStreams = true
+    maxParallelForks = 3
+    systemProperties System.getProperties()
+}
+
+serenity {
+    reports = ["single-page-html"]
+}
+
+gradle.startParameter.continueOnFailure = true
+
+test.finalizedBy(aggregate)
+
+
