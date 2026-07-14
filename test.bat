@@ -51,7 +51,7 @@ echo [+] Lanzando el Runner de Cucumber...
 echo Ejecutando: Runner.Runner
 echo.
 
-call gradlew.bat test --tests "Runner.Runner" --info
+call gradlew.bat clean test --tests "org.sara.api.Runner.Runner" --info
 
 :: Guardar código de salida
 set TEST_EXIT_CODE=%errorlevel%
