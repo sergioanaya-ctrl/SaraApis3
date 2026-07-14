@@ -1,0 +1,69 @@
+@echo off
+:: Configura el título de la consola de Windows
+title Ejecutando Pruebas de APIs con Serenity BDD
+
+:: Limpia la pantalla de la consola
+cls
+
+echo =========================================================
+echo       INICIANDO AUTOMATIZACION - APIS SARA 3
+echo =========================================================
+echo.
+
+:: Detectar si el archivo gradlew.bat existe en el directorio actual
+if not exist "gradlew.bat" (
+    color 0C
+    echo [ERROR] No se encontro el archivo 'gradlew.bat' en este directorio.
+    echo Asegurate de colocar este archivo .bat en la carpeta raiz del proyecto.
+    echo.
+    pause
+    exit /b
+)
+
+echo [+] Paso 1: Limpiando reportes y compilados anteriores...
+call gradlew.bat clean
+if %errorlevel% neq 0 (
+    echo [ADVERTENCIA] Fallo la tarea clean, continuando de todas formas...
+)
+
+echo.
+echo [+] Paso 2: Ejecutando el Runner de Cucumber...
+echo Ejecutando: Runner.java
+echo.
+
+:: Ejecuta el test JUnit apuntando directamente a tu clase Runner
+call gradlew.bat test --tests "Runner.Runner" --info
+
+:: Guardar el código de salida de las pruebas
+set TEST_EXIT_CODE=%errorlevel%
+
+echo.
+echo [+] Paso 3: Generando reporte consolidado de Serenity BDD...
+call gradlew.bat aggregate
+
+echo.
+echo =========================================================
+if %TEST_EXIT_CODE% equ 0 (
+    color 0A
+    echo    [EXITO] Todas las pruebas se ejecutaron correctamente.
+) else (
+    color 0C
+    echo    [ALERTA] Algunas pruebas fallaron (Codigo: %TEST_EXIT_CODE%).
+)
+echo =========================================================
+echo.
+
+:: Opcional: Preguntar si se desea abrir el reporte automáticamente en el navegador
+set /p open_report="¿Deseas abrir el reporte de Serenity en el navegador? (S/N): "
+if /i "%open_report%"=="S" (
+    if exist "target\site\serenity\index.html" (
+        echo Abriendo reporte...
+        start target\site\serenity\index.html
+    ) else (
+        echo [ERROR] El reporte index.html no existe. Verifica si la tarea 'aggregate' corrio bien.
+    )
+)
+
+echo.
+echo Proceso finalizado. Presiona cualquier tecla para salir.
+pause > nul
