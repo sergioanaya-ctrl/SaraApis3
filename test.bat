@@ -83,5 +83,5 @@ if /i "%open_report%"=="S" (
 )
 
 echo.
-echo Proceso finalizado. Presiona cualquier tecla para salir.
-pause > nul
+echo Proceso finalizado. La consola quedara abierta.
+cmd /k
