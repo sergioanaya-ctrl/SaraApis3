@@ -1,8 +1,10 @@
 package org.sara.api.interaccion;
 
 import org.sara.api.Modelos.TokenModel;
+import org.sara.api.Util.ApiExecutionReportUtil;
 import org.sara.api.Util.Post;
 import io.restassured.http.ContentType;
+import net.serenitybdd.rest.SerenityRest;
 import lombok.AllArgsConstructor;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
@@ -48,6 +50,10 @@ public class ConsultarApiExpediente implements Interaction {
                                 .body(bodyPeticion)
                         )
         );
+
+        int statusCode = SerenityRest.lastResponse().statusCode();
+        String responseBody = SerenityRest.lastResponse().asString();
+        ApiExecutionReportUtil.record(expediente, actionId, statusCode, responseBody);
     }
 
 

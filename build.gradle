@@ -64,7 +64,7 @@ test {
     maxParallelForks = 3
     systemProperties System.getProperties()
     // Permitir a ByteBuddy definir clases en Java 9+ (Java 21)
-    jvmArgs += ['--add-opens=java.base/java.lang=ALL-UNNAMED']
+    //jvmArgs += ['--add-opens=java.base/java.lang=ALL-UNNAMED']
 }
 
 serenity {
